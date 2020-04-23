@@ -146,6 +146,10 @@ class Instructor extends Lambdasian{
   grade(student, subject){
     return `${student.name} receives a perfect score on ${subject}`;
   }
+  newGrade(student){
+    student.grade = Math.floor(Math.random()*100); 
+    return `Your new grade is ${student.grade}`;
+  }
 }
 
 /*
@@ -169,6 +173,7 @@ class Student extends Lambdasian {
     this.previousBackground = studAttributes.previousBackground;
     this.className = studAttributes.className;
     this.favSubjects = studAttributes.favSubjects;
+    this.grade = studAttributes.grade;
   }
   listSubjects(){
     return `Loving ${this.favSubjects.toString()}`;
@@ -179,7 +184,38 @@ class Student extends Lambdasian {
   sprintChallenge(subject){
     return `${this.name} has begun sprint challenge on ${subject}`;
   }
+  graduate(){
+    if (this.grade >= 70){
+      return `Congratulations! You have graduated!`;
+    } else{
+      return `You will need to flex!`
+    }
+  }
 }
+
+const teacher = new Instructor({
+  name: 'Jen',
+  age:  35,
+  location: 'USA',
+  specialty: 'Front-End Development',
+  favLanguage: 'JavaScript',
+  catchPhrase: 'Remember the power of YET.'
+});
+
+const studentOne = new Student({
+  name: 'Jessica',
+  age: 29,
+  location: 'USA',
+  previousBackground: 'Graphic Design',
+  className: 'Web31',
+  favSubjects: ['UX', 'HTML5', 'CSS'],
+  grade: 90
+})
+
+console.log(teacher);
+console.log(studentOne);
+console.log(teacher.newGrade(studentOne));
+console.log(studentOne.graduate());
 
 /*
   TASK 6
